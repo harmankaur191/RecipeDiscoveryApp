@@ -13,6 +13,9 @@ export function FavoritesContextProvider({children}){
         setFavorites((prevFavorites)=>prevFavorites.filter((favorite)=> favorite.id!==id))
     };
 
+    const isFavorite=(id)=>{
+        
+    }
     return(
         <FavoritesContext.Provider value={{favorites,addFavorites, removeFavorites}}>
             {children}

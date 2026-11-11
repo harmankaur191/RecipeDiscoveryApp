@@ -1,17 +1,26 @@
-import { FavoritesContext } from "../context/FavoritesContext"
-import useFetch from "../useFetch"
-import RecipeItem from "./RecipeItem";
+import { useEffect, useState } from "react";
 
-export default function RecipesList({url}){
-   const {recipe} = useFetch(url);
-   const categories = recipe?.categories || [];
-   console.log(categories)
-    return(
-        <ul className="flex flex">
-           { categories.map((category)=>(
-            <RecipeItem category={category} />
-           ))}
-        </ul>
-    )
+export default function RecipesList({selectedCategory}){
+    const [recipes, setRecipes] = useState([]);
+    useEffect(()=>{
+        const fetchRecipesByCategory = async()=>{
+        try{
+            const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`)
+            const data = await res.json();
+            console.log(data)
+            setRecipes(data)
+        }catch(e){
+            console.log(e)
+        }
+    }
+    fetchRecipesByCategory();
+    },[selectedCategory])
+    
+return(
+    <ul>
+        <li>
 
+        </li>
+    </ul>
+)
 }

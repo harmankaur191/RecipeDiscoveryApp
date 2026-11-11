@@ -1,15 +1,25 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useFetch from "./useFetch"
 import { FavoritesContextProvider } from "./context/FavoritesContext";
+import CategoriesList from "./components/CategoriesList";
 import RecipesList from "./components/RecipesList";
+import {Routes} from 'react-router-dom';
+import { Route } from "react-router-dom";
+import Homepage from './components/Homepage'
+import Navbar from "./components/Navbar";
+import CategoryPage from "./components/CategoryPage";
 export default function App(){
-  const url = 'https://www.themealdb.com/api/json/v1/1/categories.php'
-  const {recipe}=useFetch(url);
-  console.log(recipe)
+
   return(
     <FavoritesContextProvider>
-      <div>
-        <RecipesList url={url} />
+      <div className="min-h-screen bg-black text-white p-10">
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<Homepage/>}/>
+          <Route path='/category/:categoryName' element={<CategoryPage/>}/>
+          <Route path = 'recipe/:recipeId'  element={<RecipesList/>}/>
+        </Routes>
+      
       </div>
     </FavoritesContextProvider>
    

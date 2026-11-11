@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 
 export default function useFetch(url) {
-    const [recipe, setRecipe] = useState(null);
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError]=useState(null);
+  
     useEffect(() => {
-
         const fetchApi = async () => {
             try {
-
+                setLoading(true);
                 const response = await fetch(url);
-                const data = await response.json();
+                if(!response.ok){
+                    throw new Error(`HTTP error! Status:${response.status}`);
+                }
+                const res = await response.json();
                 
-                setRecipe(data);
+                setData(res);
+                setError(null)
             } catch (e) {
-                console.log(e)
+                setError(e.message);
             }
         };
         
@@ -22,6 +28,5 @@ export default function useFetch(url) {
 
         , [url])
 
-
-    return { recipe };
+    return { data, loading, error};
 }
