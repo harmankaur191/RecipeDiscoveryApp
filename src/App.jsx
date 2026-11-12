@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react"
-import useFetch from "./useFetch"
 import { FavoritesContextProvider } from "./context/FavoritesContext";
-import CategoriesList from "./components/CategoriesList";
-import RecipesList from "./components/RecipesList";
 import {Routes} from 'react-router-dom';
 import { Route } from "react-router-dom";
 import Homepage from './components/Homepage'
 import Navbar from "./components/Navbar";
 import CategoryPage from "./components/CategoryPage";
+import RecipePage from "./components/RecipePage";
 export default function App(){
 
   return(
@@ -17,7 +14,7 @@ export default function App(){
         <Routes>
           <Route path='/' element={<Homepage/>}/>
           <Route path='/category/:categoryName' element={<CategoryPage/>}/>
-          <Route path = 'recipe/:recipeId'  element={<RecipesList/>}/>
+          <Route path = '/recipe/:recipeId'  element={<RecipePage/>}/>
         </Routes>
       
       </div>

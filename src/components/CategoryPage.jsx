@@ -6,10 +6,14 @@ export default function CategoryPage(){
     const url=`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`;
     const {data, loading,error} = useFetch(url);
     const recipes =data?.meals || [];
-    return(<div>
+    // console.log(recipes)
+    return(<div >
         <h1>{categoryName}</h1>
-        <div>{recipes.map((recipe)=>(
-            <Link key={recipe.idMeal}></Link>
+        <div className="grid grid-cols-4 gap-4">{recipes.map((recipe)=>(
+            <Link to={`/recipe/${recipe.idMeal}`} key={recipe.idMeal}>
+                <img src={recipe.strMealThumb} className=""/>
+                <span>{recipe.strMeal}</span>
+            </Link>
         ))}
 
         </div>

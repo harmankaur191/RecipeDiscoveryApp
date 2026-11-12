@@ -6,6 +6,12 @@ export default function useFetch(url) {
     const [error, setError]=useState(null);
   
     useEffect(() => {
+        if(!url){
+            setLoading(false);
+            setData(null);
+            return;
+        }
+
         const fetchApi = async () => {
             try {
                 setLoading(true);
