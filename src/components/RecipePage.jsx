@@ -32,9 +32,10 @@ export default function RecipePage(){
 
     return(
         <div>
-            <h1>{recipe.strMeal}</h1>
+            <h1 className="text-4xl">{recipe.strMeal}</h1>
         <p>{recipe.strCategory}, {recipe.strArea}</p>
-        <img src={recipe.strMealThumb}/>
+        <img src={recipe.strMealThumb}className="w-[150] h-[40]"/>
+        <h3>Ingredients:</h3>
         <div> {!ingredients?
         <p>Error</p>:
               <ul className="text-white">{ingredients.map((ingredient)=>{
@@ -42,6 +43,8 @@ export default function RecipePage(){
         })}
            
         </ul>}
+        <h3>Instructions</h3>
+        <p>{recipe.strInstructions}</p>
         </div>
         </div>
     )
